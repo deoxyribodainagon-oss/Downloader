@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "pixivイラストダウンローダー",
+  "version": "1.0",
+  "description": "gif,漫画は非対応。拡張機能のアイコンを押すとポップアップに作品名一覧が出てくるので、それをクリックするとダウンロード開始。よくresponseが返ってこなかったためによるエラーが出るが、動作に影響はないので大丈夫です",
+  "permissions": [
+    "scripting",
+    "tabs",
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://*/*",
+    "https://i.pximg.net/*",
+    "https://www.pixiv.net/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ]
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "downloadContent.js"
+      ]
+    }
+  ]
+}
